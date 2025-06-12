@@ -14,16 +14,25 @@ def filter_places(
         "not_open": 0
     }
 
+    if max_walk_minutes is not None:
+        max_walk_minutes = float(max_walk_minutes)
+    if max_drive_minutes is not None:
+        max_drive_minutes = float(max_drive_minutes)
+
     for place in places:
+        print(place)
         if exclude_chains and place.get("is_chain", False):
             excluded["chains"] += 1
             continue
 
         walk_info = place.get("travel_info", {}).get("walking", {})
+        print(walk_info)
         walk_seconds = walk_info.get("duration_value")
+        print(walk_seconds)
         walk_time = walk_seconds / 60 if walk_seconds is not None else float('inf')
 
         if max_walk_minutes is not None and walk_time > max_walk_minutes:
+            print(walk_time)
             excluded["walk_time"] += 1
             continue
 

@@ -18,16 +18,14 @@ def run_pipeline(user_prompt, user_lat, user_lon, gmaps_api_key, max_walk_minute
     # 4. Format into usable internal schema
     formatted = format_places(raw_places)
 
-    filtered = filter_places(formatted, max_walk_minutes=max_walk_minutes, max_drive_minutes=max_drive_minutes, exclude_chains=exclude_chains, must_be_open=must_be_open)
+    enriched = enrich_with_travel_times(formatted, user_lat, user_lon, api_key=gmaps_api_key)
 
-    # 5. Enrich with travel time data
-    enriched = enrich_with_travel_times(filtered, user_lat, user_lon, api_key=gmaps_api_key)
+    filtered = filter_places(enriched, max_walk_minutes=max_walk_minutes, max_drive_minutes=max_drive_minutes, exclude_chains=exclude_chains, must_be_open=must_be_open)
 
     # 6. Score and sort
-    scored = score_and_sort_places(enriched, parsed_filters, user_prompt)
+    scored = score_and_sort_places(filtered, parsed_filters, user_prompt)
 
     # 7. Filter based on time/open criteria
-
 
     # 8. Add Google Maps direction links
     final_results = add_direction_links(scored, user_lat, user_lon)
