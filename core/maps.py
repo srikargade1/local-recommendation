@@ -12,6 +12,7 @@ def get_travel_info(origin_lat, origin_lon, dest_lat, dest_lon, mode="walking", 
     Fetches travel time and distance between origin and destination using the specified mode.
     Modes supported: 'walking', 'driving', 'transit', 'bicycling'
     """
+    print(f"📡 Requesting travel info from {origin_lat},{origin_lon} → {dest_lat},{dest_lon} | Mode: {mode}")
     if api_key is None:
         return {
             "error": "API key is missing",

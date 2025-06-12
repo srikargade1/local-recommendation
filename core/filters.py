@@ -20,13 +20,17 @@ def filter_places(
             continue
 
         walk_info = place.get("travel_info", {}).get("walking", {})
-        walk_time = walk_info.get("duration_value", 0) / 60
+        walk_seconds = walk_info.get("duration_value")
+        walk_time = walk_seconds / 60 if walk_seconds is not None else float('inf')
+
         if max_walk_minutes is not None and walk_time > max_walk_minutes:
             excluded["walk_time"] += 1
             continue
 
         drive_info = place.get("travel_info", {}).get("driving", {})
-        drive_time = drive_info.get("duration_value", 0) / 60
+        drive_seconds = drive_info.get("duration_value")
+        drive_time = drive_seconds / 60 if drive_seconds is not None else float('inf')
+
         if max_drive_minutes is not None and drive_time > max_drive_minutes:
             excluded["drive_time"] += 1
             continue

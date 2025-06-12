@@ -5,7 +5,7 @@ from core.filters import filter_places
 from core.scoring import score_and_sort_places
 
 
-def run_pipeline(user_prompt, user_lat, user_lon, gmaps_api_key):
+def run_pipeline(user_prompt, user_lat, user_lon, gmaps_api_key, max_walk_minutes, max_drive_minutes, exclude_chains, must_be_open):
     # 1. Parse user prompt to filters
     parsed_filters = parse_prompt_to_filters(user_prompt)
 
@@ -16,24 +16,20 @@ def run_pipeline(user_prompt, user_lat, user_lon, gmaps_api_key):
     raw_places = fetch_places(query_params)
 
     # 4. Format into usable internal schema
-    formatted = format_places(raw_places, exclude_chains=parsed_filters.get("exclude_chains", False))
+    formatted = format_places(raw_places)
+
+    filtered = filter_places(formatted, max_walk_minutes=max_walk_minutes, max_drive_minutes=max_drive_minutes, exclude_chains=exclude_chains, must_be_open=must_be_open)
 
     # 5. Enrich with travel time data
-    enriched = enrich_with_travel_times(formatted, user_lat, user_lon, api_key=gmaps_api_key)
+    enriched = enrich_with_travel_times(filtered, user_lat, user_lon, api_key=gmaps_api_key)
 
     # 6. Score and sort
     scored = score_and_sort_places(enriched, parsed_filters, user_prompt)
 
     # 7. Filter based on time/open criteria
-    filtered = filter_places(
-        scored,
-        max_walk_minutes=15,                # default
-        max_drive_minutes=10,               # default
-        exclude_chains=parsed_filters.get("exclude_chains", False),
-        must_be_open=False
-    )
+
 
     # 8. Add Google Maps direction links
-    final_results = add_direction_links(filtered, user_lat, user_lon)
+    final_results = add_direction_links(scored, user_lat, user_lon)
 
     return final_results
