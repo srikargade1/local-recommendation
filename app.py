@@ -15,6 +15,7 @@ def get_places():
     user_lat = data.get("lat")
     user_lon = data.get("lon")
     gmaps_key = data.get("gmaps_api_key")
+    radius_meters = data.get("radius_meters", 1000)
 
 
     max_walk_minutes = data.get("max_walk_minutes")
@@ -29,7 +30,7 @@ def get_places():
         }), 400
 
     try:
-        results = run_pipeline(user_prompt, user_lat, user_lon, gmaps_key, max_walk_minutes, max_drive_minutes, exclude_chains, must_be_open)
+        results = run_pipeline(user_prompt, user_lat, user_lon, gmaps_key, max_walk_minutes, max_drive_minutes, exclude_chains, must_be_open, radius_meters)
         return jsonify(results)
     except Exception as e:
         print("❌ Pipeline error:", e)

@@ -12,13 +12,13 @@ HEADERS = {
     "accept": "application/json"
 }
 
-def build_query_params(input_data, lat, lon):
+def build_query_params(input_data, lat, lon, radius_meters):
     params = {
         "ll": f"{lat},{lon}",
         "query": input_data.get("query", ""),
         "sort": "RELEVANCE",
         "limit": 20,
-        "radius": input_data.get("radius_meters", 1000)
+        "radius": radius_meters
     }
 
     if input_data.get("open_now"):

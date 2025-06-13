@@ -5,12 +5,12 @@ from core.filters import filter_places
 from core.scoring import score_and_sort_places
 
 
-def run_pipeline(user_prompt, user_lat, user_lon, gmaps_api_key, max_walk_minutes, max_drive_minutes, exclude_chains, must_be_open):
+def run_pipeline(user_prompt, user_lat, user_lon, gmaps_api_key, max_walk_minutes, max_drive_minutes, exclude_chains, must_be_open, radius_meters):
     # 1. Parse user prompt to filters
     parsed_filters = parse_prompt_to_filters(user_prompt)
 
     # 2. Build Foursquare query params
-    query_params = build_query_params(parsed_filters, user_lat, user_lon)
+    query_params = build_query_params(parsed_filters, user_lat, user_lon, radius_meters)
 
     # 3. Fetch raw places
     raw_places = fetch_places(query_params)
