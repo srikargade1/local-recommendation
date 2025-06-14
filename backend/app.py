@@ -3,7 +3,8 @@ from core.pipeline import run_pipeline
 from flask_cors import CORS
 
 app = Flask(__name__)
-CORS(app, origins=["http://localhost:3000"])
+CORS(app, origins=["http://localhost:3000",
+                   "https://frontend-r0o4.onrender.com" ])
 
 
 @app.route("/places", methods=["POST"])
