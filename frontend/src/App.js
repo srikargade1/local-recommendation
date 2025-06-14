@@ -38,7 +38,7 @@ function App() {
     setLoading(true);
     setResults([]);
     try {
-      const res = await fetch("http://localhost:5000/places", {
+      const res = await fetch("https://backend-wegy.onrender.com/places", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
@@ -66,27 +66,29 @@ function App() {
     <div className="app-wrapper">
       <Header />
       <SearchForm
-  prompt={prompt}
-  lat={lat}
-  lon={lon}
-  setPrompt={setPrompt}
-  setLat={setLat}
-  setLon={setLon}
-  handleSubmit={handleSubmit}
-  loading={loading}
-  maxWalk={maxWalk}
-  setMaxWalk={setMaxWalk}
-  maxDrive={maxDrive}
-  setMaxDrive={setMaxDrive}
-  excludeChains={excludeChains}
-  setExcludeChains={setExcludeChains}
-  mustBeOpen={mustBeOpen}
-  setMustBeOpen={setMustBeOpen}
-  radiusMeters={radiusMeters}
-  setRadiusMeters={setRadiusMeters}
-/>
-
-      <PlaceList results={results} loading={loading} />
+          prompt={prompt}
+          lat={lat}
+          lon={lon}
+          setPrompt={setPrompt}
+          setLat={setLat}
+          setLon={setLon}
+          handleSubmit={handleSubmit}
+          loading={loading}
+          maxWalk={maxWalk}
+          setMaxWalk={setMaxWalk}
+          maxDrive={maxDrive}
+          setMaxDrive={setMaxDrive}
+          excludeChains={excludeChains}
+          setExcludeChains={setExcludeChains}
+          mustBeOpen={mustBeOpen}
+          setMustBeOpen={setMustBeOpen}
+          radiusMeters={radiusMeters}
+          setRadiusMeters={setRadiusMeters}
+      />
+      <PlaceList
+        results={results} 
+        loading={loading} 
+      />
     </div>
   );
 }
