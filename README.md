@@ -4,10 +4,7 @@ A full-stack web application that provides personalized local recommendations us
 
 ## 🚀 Live Demo
 
-- **Frontend:** [https://frontend-xxxxx.onrender.com](https://frontend-xxxxx.onrender.com)
-- **Backend:** [https://backend-xxxxx.onrender.com](https://backend-xxxxx.onrender.com)
-
-> Replace these with your actual Render URLs
+- **Link:** https://frontend-r0o4.onrender.com/
 
 ---
 
