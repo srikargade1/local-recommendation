@@ -6,6 +6,7 @@ import "./App.css";
 import { useEffect } from "react";
 
 function App() {
+  const [apiKey, setApiKey] = useState("");
   const [prompt, setPrompt] = useState("");
   const [lat, setLat] = useState("");
   const [lon, setLon] = useState("");
@@ -32,7 +33,7 @@ function App() {
       }
     }, []);
 
-
+  /*"https://backend-wegy.onrender.com/places" "http://127.0.0.1:5000/places"*/  
   const handleSubmit = async (e) => {
     e.preventDefault();
     setLoading(true);
@@ -45,7 +46,7 @@ function App() {
             prompt,
             lat: parseFloat(lat),
             lon: parseFloat(lon),
-            gmaps_api_key: process.env.REACT_APP_GMAPS_API_KEY,
+            gmaps_api_key: apiKey,
             max_walk_minutes: maxWalk ? parseInt(maxWalk) : null,
             max_drive_minutes: maxDrive ? parseInt(maxDrive) : null,
             exclude_chains: excludeChains,
@@ -84,6 +85,8 @@ function App() {
           setMustBeOpen={setMustBeOpen}
           radiusMeters={radiusMeters}
           setRadiusMeters={setRadiusMeters}
+          apiKey={apiKey}
+          setApiKey={setApiKey}
       />
       <PlaceList
         results={results} 

@@ -18,10 +18,24 @@ function SearchForm({
   mustBeOpen,
   setMustBeOpen,
   radiusMeters,
-  setRadiusMeters
+  setRadiusMeters,
+  apiKey,
+  setApiKey
 }) {
   return (
     <form onSubmit={handleSubmit} className="search-form">
+      <div>
+        <label>
+          Google Maps API Key:
+          <input
+            type="text"
+            value={apiKey}
+            onChange={(e) => setApiKey(e.target.value)}
+            placeholder="Enter your Google Maps API key"
+          />
+        </label>
+      </div>
+
       <div>
         <label>
           What are you looking for?
@@ -57,42 +71,42 @@ function SearchForm({
           <label htmlFor="radius-input">
             Search Radius (meters)
           </label>
-            <select
-              id="radius-select"
-              value={radiusMeters}
-              onChange={(e) => setRadiusMeters(e.target.value)}
-            >
+          <select
+            id="radius-select"
+            value={radiusMeters}
+            onChange={(e) => setRadiusMeters(e.target.value)}
+          >
             <option value="500">500 m</option>
             <option value="1000">1000 m</option>
             <option value="2000">2000 m</option>
             <option value="3000">3000 m</option>
             <option value="5000">5000 m</option>
-            </select>
+          </select>
         </div>
       </div>
 
       <div className="filters-row">
         <div className="filter-group">
           <label>
-          Max Walk Time (min):
-          <input
-            type="number"
-            value={maxWalk}
-            onChange={(e) => setMaxWalk(e.target.value)}
-            placeholder="e.g., 10"
-          />
+            Max Walk Time (min):
+            <input
+              type="number"
+              value={maxWalk}
+              onChange={(e) => setMaxWalk(e.target.value)}
+              placeholder="e.g., 10"
+            />
           </label>
         </div>
 
         <div className="filter-group">
           <label>
-          Max Drive Time (min):
-          <input
-            type="number"
-            value={maxDrive}
-            onChange={(e) => setMaxDrive(e.target.value)}
-            placeholder="e.g., 5"
-          />
+            Max Drive Time (min):
+            <input
+              type="number"
+              value={maxDrive}
+              onChange={(e) => setMaxDrive(e.target.value)}
+              placeholder="e.g., 5"
+            />
           </label>
         </div>
 
@@ -103,7 +117,7 @@ function SearchForm({
               checked={excludeChains}
               onChange={(e) => setExcludeChains(e.target.checked)}
             />
-          Exclude Chains
+            Exclude Chains
           </label>
           <label>
             <input
@@ -111,13 +125,11 @@ function SearchForm({
               checked={mustBeOpen}
               onChange={(e) => setMustBeOpen(e.target.checked)}
             />
-          Must Be Open
+            Must Be Open
           </label>
         </div>
       </div>
 
-
-      
       <button type="submit" disabled={loading}>
         {loading ? "Searching..." : "Search"}
       </button>
