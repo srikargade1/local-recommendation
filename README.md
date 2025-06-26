@@ -61,8 +61,16 @@ Create `.env` files inside `backend/` and `frontend/`:
 #### `backend/.env`
 
 ```
-OPENAI_API_KEY=your-key
-FOURSQUARE_API_KEY=your-key
+FOURSQUARE_API_KEY=YOUR_KEY_HERE
+OPENAI_API_KEY=YOUR_KEY_HERE
+
+FSQ_API_URL=https://api.foursquare.com/v3/places/search
+GOOGLE_DISTANCE_MATRIX_URL=https://maps.googleapis.com/maps/api/distancematrix/json
+
+DEFAULT_FSQ_LIMIT=20
+DEFAULT_FSQ_RADIUS=1000
+
+VITE_GMAPS_API_KEY=YOUR_KEY_HERE
 ```
 
 #### `frontend/.env`
