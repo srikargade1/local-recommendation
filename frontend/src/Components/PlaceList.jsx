@@ -1,15 +1,14 @@
 import PlaceCard from "./PlaceCard";
 
-function PlaceList({ results, loading }) {
-  console.log(results);
-  if (loading) return null;
-  if (!results.length) return <p className="empty">No results found.</p>;
+function PlaceList({ results, loading, onFeedback }) {
+  if (loading) return <p className="loading">Finding the best places for you...</p>;
+  if (!results.length) return <p className="empty">No results found. Try adjusting your search.</p>;
 
   return (
     <section className="results">
-      <h2>Recommendations</h2>
+      <h2>Recommendations <span className="result-count">({results.length})</span></h2>
       {results.map(place => (
-        <PlaceCard key={place.fsq_id} place={place} />
+        <PlaceCard key={place.fsq_id} place={place} onFeedback={onFeedback} />
       ))}
     </section>
   );

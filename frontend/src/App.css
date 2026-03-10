@@ -226,3 +226,149 @@ html, body, #root {
   width: 100%;
   box-sizing: border-box;
 }
+
+/* Place photo */
+.place-photo {
+  width: 100%;
+  height: 180px;
+  object-fit: cover;
+  border-radius: 8px 8px 0 0;
+  display: block;
+}
+
+.place-card-body {
+  padding: 1rem;
+}
+
+/* Place card header with open/closed badge */
+.place-card-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 0.5rem;
+  margin-bottom: 0.25rem;
+}
+
+.open-badge {
+  font-size: 0.75rem;
+  font-weight: 600;
+  padding: 0.2rem 0.6rem;
+  border-radius: 999px;
+  white-space: nowrap;
+}
+
+.open-badge.open {
+  background: #e6f4ea;
+  color: #1e7e34;
+}
+
+.open-badge.closed {
+  background: #fce8e6;
+  color: #c0392b;
+}
+
+/* Category tags */
+.categories {
+  font-size: 0.8rem;
+  color: #888;
+  margin: 0 0 0.4rem;
+}
+
+/* AI explanation */
+.explanation {
+  font-size: 0.9rem;
+  color: #4a4a8a;
+  background: #f0f0ff;
+  border-left: 3px solid #8e24aa;
+  padding: 0.4rem 0.75rem;
+  border-radius: 0 6px 6px 0;
+  margin: 0.5rem 0;
+}
+
+/* Compact travel info row */
+.travel-info {
+  display: flex;
+  gap: 1rem;
+  flex-wrap: wrap;
+  font-size: 0.85rem;
+  color: #555;
+  margin: 0.5rem 0;
+}
+
+/* Card footer: directions link + feedback side by side */
+.card-footer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 0.75rem;
+}
+
+.feedback-buttons {
+  display: flex;
+  gap: 0.4rem;
+  align-items: center;
+}
+
+.feedback-btn {
+  background: none;
+  border: 1px solid #ddd;
+  border-radius: 6px;
+  padding: 0.2rem 0.5rem;
+  cursor: pointer;
+  font-size: 1rem;
+  transition: background 0.15s;
+}
+
+.feedback-btn:hover {
+  background: #f0f0f0;
+}
+
+.feedback-thanks {
+  font-size: 0.8rem;
+  color: #888;
+}
+
+/* Result count */
+.result-count {
+  font-size: 1rem;
+  font-weight: normal;
+  color: #888;
+}
+
+/* Refine search form */
+.refine-form {
+  display: flex;
+  gap: 0.75rem;
+  margin-top: 1.5rem;
+  background: white;
+  padding: 1rem 1.25rem;
+  border-radius: 12px;
+  box-shadow: 0 2px 12px rgba(0, 0, 0, 0.06);
+}
+
+.refine-form input {
+  flex: 1;
+  padding: 0.6rem 0.9rem;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+  font-size: 0.95rem;
+}
+
+.refine-form button {
+  padding: 0.6rem 1.2rem;
+  background: linear-gradient(90deg, #3f51b5, #8e24aa);
+  color: white;
+  font-weight: bold;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  white-space: nowrap;
+}
+
+/* Loading state */
+.loading {
+  margin-top: 2rem;
+  text-align: center;
+  color: #888;
+  font-style: italic;
+}
